@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: 'sar-postgres'
+    image: sar/${SERVER_NAME}/alpha-docker/postgres
+    restart: always
+
+    build: ../../images/common/postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ../../data/postgres:/var/lib/postgresql/data/pgdata
+    env_file:
+      - .env
+
+
+  backend:
+    container_name: 'sar-backend'
+    image: sar/${SERVER_NAME}/alpha-docker/backend
+    build: ../../images/common/backend
+    restart: always
+
+    ports:
+      - "10080:80"
+      - "10443:443"
+    volumes:
+      - ../../src/backend:/src
+    depends_on:
+      - postgres
+    links:
+      - redis
+      - postgres
+    env_file:
+      - .env
+
+  nginx:
+    container_name: 'sar-nginx'
+    image: sar/${SERVER_NAME}/alpha-docker/nginx
+    build: ../../images/local/nginx/
+    restart: always
+
+    volumes:
+      - ../../data/nginx/ssl:/etc/ssl
+      - ../../src/backend/static:/www/data/static
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+    env_file:
+      - .env
+
+  redis:
+    container_name: 'sar-redis'
+    image: redis:latest
+    restart: always
+
+    volumes:
+      - ../../data/redis:/data
+
