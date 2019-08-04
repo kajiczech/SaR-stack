@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+sleep 2
+rm -rf static
 if ! [[ "$(ls -A .)" ]]; then
     git clone git@bitbucket.org:savebambi/backend.git .
 else echo $(ls -A .)
