@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if ! [[ "$(ls -A .)" ]]; then
+    git clone git@bitbucket.org:savebambi/backend.git .
+else echo $(ls -A .)
+fi
+
 while ! curl postgres:5432 2>&1 | grep 52
            do
              sleep 1

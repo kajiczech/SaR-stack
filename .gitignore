@@ -1,10 +1,11 @@
 .idea
 .DS_Store
-
+.env
+docker-compose.yml
 /src/backend/static/*
 
 /data/*
-
+images/common/backend/id_rsa
 !/data/nginx/
 /data/nginx/*
 !/data/nginx/ssl/
