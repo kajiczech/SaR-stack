@@ -19,5 +19,6 @@ RUN mkdir /src
 WORKDIR /src
 #RUN git clone git@bitbucket.org:savebambi/backend.git
 COPY start.sh /usr/local/bin/
+RUN chmod 0744 /usr/local/bin/start.sh
 
 ENTRYPOINT ["start.sh"]

@@ -25,7 +25,7 @@ services:
       - "10080:80"
       - "10443:443"
     volumes:
-      - ../../src/backend2:/src
+      - ../../src/backend:/src
     depends_on:
       - postgres
     links:
