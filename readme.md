@@ -1,4 +1,4 @@
-#Stack for dronetag platform
+# Stack for SaR platform
 
 This stack contains containers for every element of SaR platform
 
@@ -20,7 +20,7 @@ This stack contains containers for every element of SaR platform
     - administration accesible at \<server>/admin
     - source files in src/backend
     
-##Instalation
+## Instalation
 First you have to have docker client for your operating system installed. Once you have it, just run docker-compose
 in the directory with desired stack 
 
@@ -30,7 +30,7 @@ e.g.:
     docker-compose up -d
 After that, all the server should be running and ready and you can develop in src folders.
 
-###Settings
+### Settings
 Local stack has `.env` file predefined, dev and prod stack need to have their .env file specified locally.
 All variables, which can be shared between containers should be in that file.
 
@@ -39,7 +39,7 @@ self-signed certificate are available, you can just rename them. local stack is 
 
 
 ---
-##Other
+## Other
 You can access container command line with
     
     docker exec -ti <container> bash 
